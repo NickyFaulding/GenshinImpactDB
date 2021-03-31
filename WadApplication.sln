@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31112.23
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WadApplication", "WadApplication\WadApplication.csproj", "{75BFE53C-A687-470E-AF31-510BFA9178BB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{75BFE53C-A687-470E-AF31-510BFA9178BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75BFE53C-A687-470E-AF31-510BFA9178BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75BFE53C-A687-470E-AF31-510BFA9178BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75BFE53C-A687-470E-AF31-510BFA9178BB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0E6B1B56-885B-47B7-8261-95830163402A}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,13 @@
+﻿@page "{Id:int}"
+@model WadApplication.Pages.ArtifactDetailPageModel
+@{
+}
+
+<div class="characterDetail">
+    <h1>@Model.artifactById.Name</h1>
+    @*<img src=@("https://api.genshin.dev/characters/"+Model.characterById.Name.ToLower()+"/portrait/")>*@
+    <img src=@(string.Format(@"\images\ArtifactsImages\{0}.webp",Model.artifactById.Name.Replace(" ", "%20"))) alt="@Model.artifactById.Name">
+    <p>@Model.artifactById.Description</p>
+    <br />
+    <br />
+</div>

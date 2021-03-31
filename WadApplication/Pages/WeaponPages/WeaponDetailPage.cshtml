@@ -1,0 +1,31 @@
+﻿@page "{Id:int}"
+@model WadApplication.Pages.WeaponDetailPage
+@{
+}
+
+<h1>@Model.weaponById.Name</h1>
+<div class="weaponDetail">
+    <div class="grid-item">
+        @*<img src=@("https://api.genshin.dev/characters/"+Model.characterById.Name.ToLower()+"/portrait/")>*@
+        <img src=@(string.Format(@"\images\WeaponImages\{0}.webp",Model.weaponById.Name.Replace(" ", "%20")))>
+    </div>
+
+    <div class="description-grid">
+        <div class="grid-item">
+            <h2>Base Attack</h2>
+            <p>Attack: @Model.weaponById.Attack</p>
+        </div>
+        <div class="grid-item">
+            <h2>Substat</h2>
+            <p>@Model.weaponById.SubStat @Model.weaponById.SubStatValue</p>
+        </div>
+        <div class="grid-item">
+            <h2>Passive</h2>
+            <p>@Model.weaponById.Passive</p>
+        </div>
+        <div class="grid-item">
+            <h2>Description</h2>
+            <p>@Model.weaponById.Description</p>
+        </div>
+    </div>
+</div>

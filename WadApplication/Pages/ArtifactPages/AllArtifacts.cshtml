@@ -1,0 +1,22 @@
+﻿@page
+@model WadApplication.Pages.AllArtifactsModel
+@{
+}
+<h1>All Artifact Sets</h1>
+<h2>Pick one to see the full set.</h2>
+
+<section class="wrap">
+    @foreach (var item in Model.ArtifactSetIcons)
+    {
+        <div class="filmThumb">
+            <div>
+                <a asp-page="ArtifactSetPage" asp-route-id="@item.SetType">
+                    <img src=@(string.Format(@"\images\ArtifactsImages\{0}.webp",item.Image.Replace(" ", "%20"))) alt="@item.Image">
+                </a>
+            </div>
+            <h3>
+                @item.SetType
+            </h3>
+        </div>
+    }
+</section>

@@ -1,0 +1,19 @@
+﻿@page "{Id:int}"
+@model WadApplication.Pages.CharacterDetailPage
+@{
+}
+
+<div class="characterDetail-Style">
+    <div class="characterDetail">
+        <div id="characterName">
+            <img src=@(string.Format(@"/images/CharacterNames/{0}/{1}-W.png",Model.characterById.Nation, Model.characterById.Name)) alt="@Model.characterById.Name" width="300">
+        </div>
+        <div id="characterImage">
+            <img src=@(string.Format(@"/images/CharacterImages/{0}.png", Model.characterById.Name)) width="400">
+        </div>
+    </div>
+    <br />
+    <p>@Model.characterById.Description</p>
+    <br />
+    <br />
+</div>
