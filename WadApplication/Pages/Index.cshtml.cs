@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
 
 namespace WadApplication.Pages
 {
@@ -19,7 +20,6 @@ namespace WadApplication.Pages
 
         public void OnGet()
         {
-
         }
     }
 }

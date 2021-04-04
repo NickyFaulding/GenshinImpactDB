@@ -12,24 +12,17 @@
 </form>
 
 <section class="wrap">
-    @if(Model.SearchString != null && (string)Model.SearchString != String.Empty)
-            {
-                @foreach (var item in Model.FoundWeapons)
-                {
-                    <div class="filmThumb">
-                        <div>
-                            <a asp-page="WeaponDetailPage" asp-route-id="@item.WeaponID">
-                                <img src=@(string.Format(@"\images\WeaponImages\{0}.webp", item.Name.Replace(" ", "%20"))) alt="@item.Name">
-                            </a>
-                        </div>
-                        <h3>
-                            @item.Name
-                        </h3>
-                    </div>
-                }  
-        if(Model.FoundWeapons.Count == 0)
-                {
-                    <p>Sorry no matches.</p>
-                }
-            }
+    @foreach (var item in Model.FoundWeapons)
+    {
+        <div class="filmThumb">
+            <div>
+                <a asp-page="WeaponDetailPage" asp-route-id="@item.WeaponID">
+                    <img src=@(string.Format(@"\images\WeaponImages\{0}.webp", item.Name.Replace(" ", "%20"))) alt="@item.Name">
+                </a>
+            </div>
+            <h3>
+                @item.Name
+            </h3>
+        </div>
+    }  
 </section>

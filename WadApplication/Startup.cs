@@ -10,11 +10,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using WadApplication.Model;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Data.SqlClient;
 
 namespace WadApplication
 {
     public class Startup
     {
+        private string _connection = null;
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -25,10 +27,17 @@ namespace WadApplication
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var builder = new SqlConnectionStringBuilder(
+                Configuration.GetConnectionString("GenshinDB"));
+            builder.Password = Configuration["GDBPass"];
+            _connection = builder.ConnectionString;
+
             services.AddRazorPages();
 
             services.AddDbContext<ApplicationDbContext>(options =>
-                                       options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                                       options.UseSqlServer(_connection));
+
+            //^^using secret to hide the connection to server key
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -37,7 +46,6 @@ namespace WadApplication
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseDatabaseErrorPage();
             }
             else
             {
