@@ -2,78 +2,60 @@
 @model WadApplication.Pages.WeaponCMS.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Weapon CMS";
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<h1>Weapons Content Management Page</h1>
 
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Weapon[0].Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Weapon[0].Type)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Weapon[0].Rarity)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Weapon[0].Attack)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Weapon[0].SubStat)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Weapon[0].SubStatValue)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Weapon[0].Passive)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Weapon[0].Description)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model.Weapon) {
-        <tr>
-            <td>
+<div class="searchGrid">
+    <a asp-page="Create" class="aBtns">Create New Weapon</a>
+
+    <form asp-page="./Index" method="get">
+        <a class="aBtns" id="toggleSearch">Filters</a>
+        <input type="text" name="searchStringName" value="@Model.CurrentNameFilter" placeholder="Enter weapon name"/>
+        <input type="submit" value="Search" class="" />
+    </form>
+
+    <div class="AdvancedSearch">
+
+        <form asp-page="./Index" method="get">
+            <input type="submit" name="searchStringType" value="Bow" />
+            <input type="submit" name="searchStringType" value="Catalyst" />
+            <input type="submit" name="searchStringType" value="Claymore" />
+            <input type="submit" name="searchStringType" value="Sword" />
+        </form>
+
+        <a class="aBtns" asp-page="./Index" asp-route-sortOrder="@Model.NameSort">
+            Name  
+        </a>
+        <a class="aBtns" asp-page="./Index" asp-route-sortOrder="@Model.TypeSort">
+            Type
+        </a>
+    </div>
+</div>
+<section class="wrap">
+
+    @foreach (var item in Model.Weapons)
+    {
+        <div class="filmThumb">
+            <div>
+                <a>
+                    <img src=@(string.Format(@"\images\WeaponImages\{0}.webp", item.Name.Replace(" ", "%20"))) alt="@item.Name">
+                </a>
+            </div>
+
+            <h3>
                 @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Type)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Rarity)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Attack)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SubStat)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SubStatValue)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Passive)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
+            </h3>
+            <div class="cms-details">
                 <a asp-page="./Edit" asp-route-id="@item.WeaponID">Edit</a> |
                 <a asp-page="./Details" asp-route-id="@item.WeaponID">Details</a> |
                 <a asp-page="./Delete" asp-route-id="@item.WeaponID">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+            </div>
+        </div>
+    }
+
+</section>
+
+<a class="aBtns" asp-page="./Index">Back to full List</a>

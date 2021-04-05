@@ -5,10 +5,31 @@
 
 <h1>All Playable Characters</h1>
 
+<form asp-page="./AllCharacters" method="get">
+    <div class="">
+        <p>
+            <input type="submit" name="searchStringRarity" value="⭐⭐⭐⭐" />
+            <input type="submit" name="searchStringRarity" value="⭐⭐⭐⭐⭐" />
+        </p>
+    </div>
+</form>
+
+<form asp-page="./AllCharacters" method="get">
+    <div class="">
+        <p>
+            <input type="submit" name="searchStringElement" value="Anemo" />
+            <input type="submit" name="searchStringElement" value="Pyro" />
+            <input type="submit" name="searchStringElement" value="Cryo" />
+            <input type="submit" name="searchStringElement" value="Hydro" />
+            <input type="submit" name="searchStringElement" value="Electro" />
+            <input type="submit" name="searchStringElement" value="Dendaro" />
+            <input type="submit" name="searchStringElement" value="Adaptive" />
+        </p>
+    </div>
+</form>
+
 <section class="wrap">
-
-
-    @foreach (var item in Model.AllCharacters)
+    @foreach (var item in Model.Characters)
     {
         <div class="filmThumb">
             <div>
@@ -17,8 +38,8 @@
                 </a>
             </div>
             <h3>
-                @item.Name 
-                <br/>
+                @item.Name
+                <br />
                 @if (item.Vision == "Adaptive")
                 {
                     <img src="~/images/ElementIcons/Adaptive2.gif" alt="Adaptive" height="48" width="48" />
@@ -31,3 +52,5 @@
         </div>
     }
 </section>
+
+<a class="aBtns" asp-page="./AllCharacters">Back to full List</a>

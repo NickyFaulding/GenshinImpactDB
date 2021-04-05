@@ -20,8 +20,7 @@ namespace WadApplication
                     {
                         builder.AddUserSecrets<Program>();
                     }
-                }
-                )
+                })
                 .Build();
 
             CreateHostBuilder(args).Build().Run();

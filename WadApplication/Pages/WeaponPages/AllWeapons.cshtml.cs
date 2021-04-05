@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 using WadApplication.Model;
 
 namespace WadApplication.Pages
@@ -12,29 +13,32 @@ namespace WadApplication.Pages
     {
         private readonly ApplicationDbContext _db;
 
-        [BindProperty (SupportsGet =true)]
-        public string SearchString { get; set; }
+        public string CurrentTypeFilter { get; set; }
 
         public AllWeaponsModel(ApplicationDbContext db)
         {
             _db = db;
         }
 
-        public List<Weapon> AllWeapons { get; set; }
-        public List<Weapon> FoundWeapons { get; set; }
+        public IList<Weapon> Weapons { get;set; }
 
-        public void OnGet()
+        public async Task OnGetAsync(string sortOrder, string searchStringRarity, string searchStringType)
         {
-            var weapons = from w in _db.AllWeapons
-                          select w;
+            IQueryable<Weapon> weaponIQ = from w in _db.AllWeapons
+                                          select w;
 
-            if (!string.IsNullOrEmpty(SearchString))
+            CurrentTypeFilter = searchStringType;
+
+            if (!String.IsNullOrEmpty(searchStringType))
             {
-                weapons = weapons.Where(s => s.Name.Contains(SearchString));
+                weaponIQ = weaponIQ.Where(w => w.Type.Contains(searchStringType));
+            }
+            if (!String.IsNullOrEmpty(searchStringRarity))
+            {                
+                weaponIQ = weaponIQ.Where(w => w.Rarity.Equals(searchStringRarity.Length));
             }
 
-            FoundWeapons = weapons.ToList();
-
+            Weapons = await weaponIQ.AsNoTracking().ToListAsync();
         }
     }
 }

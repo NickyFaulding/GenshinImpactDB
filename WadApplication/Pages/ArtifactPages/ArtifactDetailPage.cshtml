@@ -3,11 +3,19 @@
 @{
 }
 
-<div class="characterDetail">
-    <h1>@Model.artifactById.Name</h1>
-    @*<img src=@("https://api.genshin.dev/characters/"+Model.characterById.Name.ToLower()+"/portrait/")>*@
-    <img src=@(string.Format(@"\images\ArtifactsImages\{0}.webp",Model.artifactById.Name.Replace(" ", "%20"))) alt="@Model.artifactById.Name">
-    <p>@Model.artifactById.Description</p>
-    <br />
-    <br />
+<div class="itemDetail">
+    <div class="description-grid">
+        <div class="grid-item">
+            <img src=@(string.Format(@"\images\ArtifactsImages\{0}.webp",Model.artifactById.Name.Replace(" ", "%20"))) alt="@Model.artifactById.Name">
+        </div>
+        <div class="grid-item">
+            <h2>@Model.artifactById.Name</h2>
+            <p></p>
+        </div>
+        <div class="grid-item">
+            <h2>Descrption</h2>
+            <p>@Model.artifactById.Description</p>
+        </div>
+    </div>
 </div>
+<button class="backBtn">Back</button>

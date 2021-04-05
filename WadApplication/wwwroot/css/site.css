@@ -1,6 +1,7 @@
 ﻿:root {
     --navbarColourLight: rgba(159, 168, 218, 0.4);
     --ColourDark: rgba(32,64,94, 0.7);
+    --ColourDarkBack: rgba(32,64,94, 0.4);
     --primaryFont: 'Roboto', sans-serif;
     --primaryFontSize: 18px;
     --backgroundImage: url("../images/BackgroundImages/Background1.jpg");
@@ -20,12 +21,19 @@ body {
     text-align:center;
 }
 
-h1{
-    padding:50px;
+p{
+    color:var(--navTextColour);
+}
+
+h1 {
+    padding: 30px;
+    text-transform: capitalize;
+    background-color: var(--ColourDark);
+    color: white;
 }
 
 h2{
-    padding:30px;
+    padding:20px;
 }
 
 .navbar {
@@ -149,12 +157,14 @@ section {
 #characterName {
     display: inline-block;
     padding-top: 60%;
-    padding-right: 20%;
+    padding-right: 30px;
+    padding-left: 10px;
 }
 
 #characterImage {
     display: inline-block;
     padding-top: 10%;
+    padding-right:10px;
 }
 
 .characterDetail {
@@ -170,15 +180,25 @@ section {
     color:var(--navTextColour);
 }
 
-.weaponDetail {
+.itemDetail {
     display: grid;
-    grid-template-columns: 600px 600px;
+    grid-template-columns: 400px;
     justify-content: center;
     height: auto;
     grid-template-rows: max-content;
+    padding-top:2%;
+}
+
+.grid-item{
+    background-color: var(--ColourDarkBack);
+    padding:5px;
+    margin:5px;
 }
 
 .description-grid {
+    display: grid;
+    grid-template-columns: initial;
+    grid-template-rows: max-content;
     background-color: var(--ColourDark);
     color: white;
 }
@@ -230,6 +250,65 @@ div.filmThumb > div > a > img:hover {
     font-size:46px;
 }
 
+.cms-details > a{
+    text-decoration: none;
+    color: var(--navTextColour);
+}
+
+.cms-details > a:hover{
+    color: white;
+}
+
+input[type=text] {
+    border: none;
+    padding: 10px 3px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    background-color: var(--ColourDark);
+    color: var(--navTextColour);
+    display: inline-block;
+    font-size: 16px;
+    height:40px;
+    margin:12px;
+}
+
+input[type=text]::placeholder{
+color:var(--navTextColour);
+}
+
+button,
+.aBtns,
+input[type=submit]
+{
+    background-color: var(--ColourDark);
+    margin-bottom: 5px;
+    margin-top: 5px;
+    border:none;
+    color:var(--navTextColour);
+    padding:10px 28px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    height:40px;
+}
+
+button:hover,
+.aBtns:hover,
+input[type=submit]:hover
+{
+    background-color: darkgray;
+}
+
+.searchGrid{
+    display:inline-grid;
+}
+
+.formFlex{
+    justify-content: space-evenly;
+}
+
 @media screen and (min-width: 768px) {
     /*for desktop*/
     .navbar {
@@ -254,13 +333,8 @@ div.filmThumb > div > a > img:hover {
     }
 
     .description-grid {
-        display: grid;
-        grid-template-columns: initial;
-        grid-template-rows: max-content;
+
         padding: 30px;
-    }
-    .grid-item{
-        padding:30px;
     }
 
     #account {

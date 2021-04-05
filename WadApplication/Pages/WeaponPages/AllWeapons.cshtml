@@ -4,15 +4,28 @@
 }
 <h1>All Avaliable Weapons</h1>
 
-<form id="SearchBar">
-    <p>
-        Name : <input type="text" name="search" asp-for="SearchString" />
-               <a href="javascript:void(0)" id="Search" >Search</a>
-    </p>
+<form asp-page="./AllWeapons" method="get">
+    <div class="">
+        <p>
+            <input type="submit" name="searchStringType" value="Bow" />
+            <input type="submit" name="searchStringType" value="Catalyst" />
+            <input type="submit" name="searchStringType" value="Claymore" />
+            <input type="submit" name="searchStringType" value="Sword" />
+        </p>
+    </div>
 </form>
-
+<form asp-page="./AllWeapons" method="get">
+    <div class="">
+        <p>
+            <input type="submit" name="searchStringRarity" value="⭐⭐" />
+            <input type="submit" name="searchStringRarity" value="⭐⭐⭐" />
+            <input type="submit" name="searchStringRarity" value="⭐⭐⭐⭐" />
+            <input type="submit" name="searchStringRarity" value="⭐⭐⭐⭐⭐" />
+        </p>
+    </div>
+</form>
 <section class="wrap">
-    @foreach (var item in Model.FoundWeapons)
+    @foreach (var item in Model.Weapons)
     {
         <div class="filmThumb">
             <div>
@@ -24,5 +37,7 @@
                 @item.Name
             </h3>
         </div>
-    }  
+    }
 </section>
+
+<a class="aBtns" asp-page="./AllWeapons">Back to full List</a>
