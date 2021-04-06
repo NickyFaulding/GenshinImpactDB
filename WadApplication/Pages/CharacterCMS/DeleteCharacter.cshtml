@@ -1,0 +1,68 @@
+﻿@page
+@model WadApplication.Pages.CharacterCMS.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+
+<div class="formBoundry">
+    <form method="post">
+        <input type="hidden" asp-for="Character.CharacterID" />
+        <label asp-for="Character.Name" class="control-label"></label>
+        <div class="form-group">
+            <input asp-for="Character.Name" class="form-control" disabled/>
+        </div>
+        <label asp-for="Character.Vision" class="control-label"></label>
+        <div class="form-group">
+            <select asp-for="Character.Vision" disabled>
+                <option value="Anemo">Anemo</option>
+                <option value="Electro">Electro</option>
+                <option value="Hydro">Hydro</option>
+                <option value="Cryo">Cryo</option>
+                <option value="Pyro">Pyro</option>
+                <option value="Dendro">Dendro</option>
+                <option value="Adaptive">Adaptive</option>
+            </select>
+        </div>
+        <label asp-for="Character.WeaponType" class="control-label"></label>
+        <div class="form-group">
+            <select asp-for="Character.WeaponType" disabled>
+                <option value="Bow">Bow</option>
+                <option value="Catalyst">Catalyst</option>
+                <option value="Claymore">Claymore</option>
+                <option value="Sword">Sword</option>
+            </select>
+        </div>
+        <label asp-for="Character.Nation" class="control-label"></label>
+        <div class="form-group">
+            <select asp-for="Character.Nation" disabled>
+                <option value="Mondstadt">Mondstadt</option>
+                <option value="Liyue">Liyue</option>
+                <option value="Snezhnaya">Snezhnaya</option>
+                <option value="Unknown">Unknown</option>
+            </select>
+        </div>
+        <label asp-for="Character.Rarity" class="control-label"></label>
+        <div class="form-group">
+            <select asp-for="Character.Rarity" disabled>
+                <option value="4">⭐⭐⭐⭐</option>
+                <option value="5">⭐⭐⭐⭐⭐</option>
+            </select>
+        </div>
+        <label asp-for="Character.Description" class="control-label"></label>
+        <div class="form-group">
+            <textarea asp-for="Character.Description" class="form-control" disabled></textarea>
+        </div>
+    </form>
+</div>
+    
+<form method="post">
+    <input type="hidden" asp-for="Character.CharacterID" />
+    <input type="submit" value="Delete" class="btn btn-danger" />
+    <a class="aBtns" asp-page="./Index">Back to List</a>
+</form>

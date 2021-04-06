@@ -1,0 +1,50 @@
+﻿@page
+@model WadApplication.Pages.ArtifactCMS.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Delete Artifact</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+
+<div class="formBoundry">
+    <form method="post">
+        <input type="hidden" asp-for="Artifact.ArtifactID" />
+        <label asp-for="Artifact.Name" class="control-label"></label>
+        <div class="form-group">
+            <input asp-for="Artifact.Name" class="form-control" disabled />
+        </div>
+        <label asp-for="Artifact.Type" class="control-label"></label>
+        <div class="form-group">
+            <select asp-for="Artifact.Type" disabled>
+                <option value="Flower of Life">Flower of Life</option>
+                <option value="Plume of Death">Plume of Death</option>
+                <option value="Sands of Eon">Sands of Eon</option>
+                <option value="Goblet of Eonothem">Goblet of Eonothem</option>
+                <option value="Circlet of Logos">Circlet of Logos</option>
+            </select>
+        </div>
+        <label asp-for="Artifact.SetName" class="control-label"></label>
+        <div class="form-group">
+            <select asp-for="Artifact.Type" disabled>
+                @foreach (var item in Model.ArtifactSets)
+                {
+                    <option value="@item.SetName">@item.SetName</option>
+                }
+            </select>
+        </div>
+        <label asp-for="Artifact.Description" class="control-label"></label>
+        <div class="form-group">
+            <textarea asp-for="Artifact.Description" class="form-control" disabled></textarea>
+        </div>
+    </form>
+</div>
+
+<form method="post">
+    <input type="hidden" asp-for="Artifact.ArtifactID" />
+    <input type="submit" value="Delete" class="btn btn-danger" />
+    <a class="aBtns" asp-page="./Index">Back to List</a>
+</form>

@@ -1,0 +1,51 @@
+﻿@page
+@model WadApplication.Pages.ArtifactCMS.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Edit Artifact</h1>
+
+<div class="formBoundry">
+    <form method="post">
+        <input type="hidden" asp-for="Artifact.ArtifactID" />
+        <label asp-for="Artifact.Name" class="control-label"></label>
+        <div class="form-group">
+            <input asp-for="Artifact.Name" class="form-control" />
+        </div>
+        <label asp-for="Artifact.Type" class="control-label"></label>
+        <div class="form-group">
+            <select asp-for="Artifact.Type">
+                <option value="Flower of Life">Flower of Life</option>
+                <option value="Plume of Death">Plume of Death</option>
+                <option value="Sands of Eon">Sands of Eon</option>
+                <option value="Goblet of Eonothem">Goblet of Eonothem</option>
+                <option value="Circlet of Logos">Circlet of Logos</option>
+            </select>
+        </div>
+        <label asp-for="Artifact.SetName" class="control-label"></label>
+        <div class="form-group">
+            <select asp-for="Artifact.Type">
+                @foreach (var item in Model.ArtifactSet)
+                {
+                    <option value="@item.SetName">@item.SetName</option>
+                }
+            </select>
+        </div>
+        <label asp-for="Artifact.Description" class="control-label"></label>
+        <div class="form-group">
+            <textarea asp-for="Artifact.Description" class="form-control"></textarea>
+        </div>
+        <div class="form-group">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <input type="submit" value="Save" />
+            <a class="aBtns" asp-page="./Index">Back to List</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

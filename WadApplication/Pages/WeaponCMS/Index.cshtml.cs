@@ -22,11 +22,6 @@ namespace WadApplication.Pages.WeaponCMS
         public string TypeSort { get; set; }
         public string CurrentNameFilter { get; set; }
         public string CurrentTypeFilter { get; set; }
-        public string BowFilter { get; set; }
-        public string ClaymoreFilter { get; set; }
-        public string CatalystFilter { get; set; }
-        public string SwordFilter { get; set; }
-        public string CurrentSort { get; set; }
 
         public IList<Weapon> Weapons { get;set; }
 

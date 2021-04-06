@@ -1,0 +1,78 @@
+﻿@page
+@model WadApplication.Pages.WeaponCMS.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Edit Weapon</h1>
+
+
+<div class="formBoundry">
+    <form method="post">
+        <input type="hidden" asp-for="Weapon.WeaponID" />
+        <label asp-for="Weapon.Name" class="control-label"></label>
+        <div class="form-group">
+            <input asp-for="Weapon.Name" class="form-control" />
+        </div>
+        <label asp-for="Weapon.Type" class="control-label"></label>
+        <div class="form-group">
+            <select asp-for="Weapon.Type">
+                <option value="Bow">Bow</option>
+                <option value="Catalyst">Catalyst</option>
+                <option value="Claymore">Claymore</option>
+                <option value="Sword">Sword</option>
+            </select>
+        </div>
+        <label asp-for="Weapon.Rarity" class="control-label"></label>
+        <div class="form-group">
+            <select asp-for="Weapon.Rarity">
+                <option value="2">⭐⭐</option>
+                <option value="3">⭐⭐⭐</option>
+                <option value="4">⭐⭐⭐⭐</option>
+                <option value="5">⭐⭐⭐⭐⭐</option>
+            </select>
+        </div>
+        <label asp-for="Weapon.Attack" class="control-label"></label>
+        <div class="form-group">
+            <input asp-for="Weapon.Attack" class="form-control" />
+        </div>
+        <label asp-for="Weapon.SubStat" class="control-label"></label>
+        <div class="form-group">
+            <select asp-for="Weapon.SubStat">
+                <option value="ATK%">ATK%</option>
+                <option value="CRIT DMG%">CRIT DMG%</option>
+                <option value="CRIT Rate%">CRIT Rate%</option>
+                <option value="DEF%">DEF%</option>
+                <option value="Elemental Mastery">Elemental Mastery</option>
+                <option value="Elemental Mastery">Elemental Mastery</option>
+                <option value="HP%">HP%</option>
+                <option value="Phys DMG%">Phys DMG%</option>
+                <option value="none">none</option>
+            </select>
+        </div>
+        <label asp-for="Weapon.SubStatValue" class="control-label"></label>
+        <div class="form-group">
+            <input asp-for="Weapon.SubStatValue" class="form-control" />
+        </div>
+        <label asp-for="Weapon.Passive" class="control-label"></label>
+        <div class="form-group">
+            <textarea asp-for="Weapon.Passive" class="form-control"></textarea>
+        </div>
+        <label asp-for="Weapon.Description" class="control-label"></label>
+        <div class="form-group">
+            <textarea asp-for="Weapon.Description" class="form-control"></textarea>
+        </div>
+        <div class="form-group">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <input type="submit" value="Save" />
+            <a class="aBtns" asp-page="./Index">Back to full List</a>
+        </div>
+    </form>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

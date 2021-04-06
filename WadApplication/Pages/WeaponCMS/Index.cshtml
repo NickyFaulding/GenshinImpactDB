@@ -6,10 +6,10 @@
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 
-<h1>Weapons Content Management Page</h1>
+<h1>Weapon Content Management Page</h1>
 
 <div class="searchGrid">
-    <a asp-page="Create" class="aBtns">Create New Weapon</a>
+    <a asp-page="CreateWeapon" class="aBtns">Create New Weapon</a>
 
     <form asp-page="./Index" method="get">
         <a class="aBtns" id="toggleSearch">Filters</a>
@@ -35,7 +35,6 @@
     </div>
 </div>
 <section class="wrap">
-
     @foreach (var item in Model.Weapons)
     {
         <div class="filmThumb">
@@ -49,9 +48,9 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </h3>
             <div class="cms-details">
-                <a asp-page="./Edit" asp-route-id="@item.WeaponID">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.WeaponID">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.WeaponID">Delete</a>
+                <a asp-page="./EditWeapon" asp-route-id="@item.WeaponID">Edit</a> |
+                <a asp-page="/WeaponPages/WeaponDetailPage" asp-route-id="@item.WeaponID">Details</a> |
+                <a asp-page="./DeleteWeapon" asp-route-id="@item.WeaponID">Delete</a>
             </div>
         </div>
     }

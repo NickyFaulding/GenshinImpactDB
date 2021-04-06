@@ -4,9 +4,9 @@
 }
 <div class="itemDetail">
     <div class="description-grid">
-        <div class="grid-item">
-            <h1>@Model.weaponById.Name</h1>
-        </div>
+
+        <h1>@Model.weaponById.Name</h1>
+        
         <div class="grid-item">
             <img src=@(string.Format(@"\images\WeaponImages\{0}.webp",Model.weaponById.Name.Replace(" ", "%20")))>
         </div>

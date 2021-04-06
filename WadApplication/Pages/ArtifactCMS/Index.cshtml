@@ -1,0 +1,33 @@
+﻿@page
+@model WadApplication.Pages.ArtifactCMS.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Artifacts Content Management Page</h1>
+
+<a class="aBtns" asp-page="CreateArtifact">Create New Artifact</a>
+
+<section class="wrap">
+    @foreach (var item in Model.Artifact)
+    {
+        <div class="filmThumb">
+            <div>
+                <a>
+                    <img src=@(string.Format(@"\images\ArtifactsImages\{0}.webp",item.Name.Replace(" ", "%20"))) alt="@item.Name">
+                </a>
+            </div>
+            <h3>
+                @Html.DisplayFor(modelItem => item.Name)
+            </h3>
+            <div class="cms-details">
+                <a asp-page="./EditArtifact" asp-route-id="@item.ArtifactID">Edit</a> |
+                <a asp-page="/ArtifactPages/ArtifactDetailPage" asp-route-id="@item.ArtifactID">Details</a> |
+                <a asp-page="./DeleteArtifact" asp-route-id="@item.ArtifactID">Delete</a>
+            </div>
+        </div>
+    }
+
+</section>

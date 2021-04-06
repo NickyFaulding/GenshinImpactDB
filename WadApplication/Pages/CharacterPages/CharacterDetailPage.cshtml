@@ -1,20 +1,53 @@
 ﻿@page "{Id:int}"
 @model WadApplication.Pages.CharacterDetailPage
 @{
-}
+    string rating = "";
+    for (int x = 0; x < Model.characterById.Rarity; x++) { rating += "⭐"; }
 
-<div class="characterDetail-Style">
-    <div class="characterDetail">
-        <div id="characterName">
-            <img src=@(string.Format(@"/images/CharacterNames/{0}/{1}-W.png",Model.characterById.Nation, Model.characterById.Name)) alt="@Model.characterById.Name" width="300">
-        </div>
-        <div id="characterImage">
-            <img src=@(string.Format(@"/images/CharacterImages/{0}.png", Model.characterById.Name)) width="400">
-        </div>
+    string nation = "";
+    string characterName = Model.characterById.Name;
+    string weaponType = Model.characterById.WeaponType;
+    string vision = Model.characterById.Vision;
+    string description = Model.characterById.Description;
+
+    nation = Model.characterById.Nation;
+    if(nation == "Unknown")
+    {
+        nation = "Mondstadt";
+    }
+}
+    <div class="characterDetail-Style">
+            <div>
+                <div class="grid-item" id="characterName">
+                    <img src=@(string.Format(@"/images/CharacterNames/{0}/{1}-W.png", nation, characterName)) alt="@characterName" width="300">
+                </div>
+                <div class="grid-item">
+                    <img src=@(string.Format(@"/images/CharacterImages/{0}.png", characterName)) height="700">
+                </div>
+            </div>
+            <div id="charDetails">
+                <div class="grid-item">
+                    <h2>Rating</h2>
+                    <p>@rating</p>
+                </div>
+                <div class="grid-item">
+                    <h2>Nation</h2>
+                    <p>@Model.characterById.Nation</p>
+                </div>
+                <div class="grid-item">
+                    <h2>Weapon</h2>
+                    <p>@Model.characterById.WeaponType</p>
+                    <img src=@(string.Format(@"/images/CharacterImages/WeaponType/{0}.png", weaponType)) alt="@weaponType" height="48" width="48" />
+                </div>
+                <div class="grid-item">
+                    <h2>Vision</h2>
+                    <p>@Model.characterById.Vision</p>
+                    <img src=@(string.Format(@"/images/ElementIcons/{0}.png",vision)) alt="@vision" height="48" width="48" />
+                </div>
+                <div class="grid-item">
+                    <h2>Description</h2>
+                    <p>@description</p>
+                </div>
+            </div>
     </div>
-    <br />
-    <p>@Model.characterById.Description</p>
-    <br />
-    <br />
     <button class="backBtn">back</button>
-</div>
