@@ -8,8 +8,8 @@
 <form asp-page="./AllCharacters" method="get">
     <div class="">
         <p>
-            <input type="submit" name="searchStringRarity" value="⭐⭐⭐⭐" />
-            <input type="submit" name="searchStringRarity" value="⭐⭐⭐⭐⭐" />
+            <input type="submit" asp-route-searchStringRarity="@Model.CurrentRarityFilter" name="searchStringRarity" value="⭐⭐⭐⭐" />
+            <input type="submit" asp-route-searchStringRarity="@Model.CurrentRarityFilter"name="searchStringRarity" value="⭐⭐⭐⭐⭐" />
         </p>
     </div>
 </form>
@@ -17,13 +17,13 @@
 <form asp-page="./AllCharacters" method="get">
     <div class="">
         <p>
-            <input type="submit" name="searchStringElement" value="Anemo" />
-            <input type="submit" name="searchStringElement" value="Pyro" />
-            <input type="submit" name="searchStringElement" value="Cryo" />
-            <input type="submit" name="searchStringElement" value="Hydro" />
-            <input type="submit" name="searchStringElement" value="Electro" />
-            <input type="submit" name="searchStringElement" value="Dendro" />
-            <input type="submit" name="searchStringElement" value="Adaptive" />
+            <input type="submit" asp-route-searchStringElement="@Model.CurrentElementFilter" name="searchStringElement" value="Anemo" />
+            <input type="submit" asp-route-searchStringElement="@Model.CurrentElementFilter" name="searchStringElement" value="Pyro" />
+            <input type="submit" asp-route-searchStringElement="@Model.CurrentElementFilter" name="searchStringElement" value="Cryo" />
+            <input type="submit" asp-route-searchStringElement="@Model.CurrentElementFilter" name="searchStringElement" value="Hydro" />
+            <input type="submit" asp-route-searchStringElement="@Model.CurrentElementFilter" name="searchStringElement" value="Electro" />
+            <input type="submit" asp-route-searchStringElement="@Model.CurrentElementFilter" name="searchStringElement" value="Dendro" />
+            <input type="submit" asp-route-searchStringElement="@Model.CurrentElementFilter" name="searchStringElement" value="Adaptive" />
         </p>
     </div>
 </form>

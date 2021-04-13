@@ -6,33 +6,35 @@
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 
-<h1>Weapon Content Management Page</h1>
+<h1>Weapon Management Page</h1>
 
 <div class="searchGrid">
     <a asp-page="CreateWeapon" class="aBtns">Create New Weapon</a>
 
     <form asp-page="./Index" method="get">
-        <a class="aBtns" id="toggleSearch">Filters</a>
-        <input type="text" name="searchStringName" value="@Model.CurrentNameFilter" placeholder="Enter weapon name"/>
+        <select name="searchStringType">
+            @foreach (var item in Model.types)
+            {
+                if (item == Model.CurrentTypeFilter)
+                {
+                    <option selected="selected" value="@item">@item</option>
+                }
+                else
+                {
+                    <option value="@item">@item</option>
+                }
+            }
+
+        </select>
+        <input type="text" name="searchStringName" value="@Model.CurrentNameFilter" placeholder="Enter weapon name" />
         <input type="submit" value="Search" class="" />
     </form>
-
-    <div class="AdvancedSearch">
-
-        <form asp-page="./Index" method="get">
-            <input type="submit" name="searchStringType" value="Bow" />
-            <input type="submit" name="searchStringType" value="Catalyst" />
-            <input type="submit" name="searchStringType" value="Claymore" />
-            <input type="submit" name="searchStringType" value="Sword" />
-        </form>
-
-        <a class="aBtns" asp-page="./Index" asp-route-sortOrder="@Model.NameSort">
-            Name  
-        </a>
-        <a class="aBtns" asp-page="./Index" asp-route-sortOrder="@Model.TypeSort">
-            Type
-        </a>
-    </div>
+    <a class="aBtns" asp-page="./Index" asp-route-sortOrder="@Model.NameSort" asp-route-searchStringName="@Model.CurrentNameFilter" asp-route-searchStringType="@Model.CurrentTypeFilter">
+        @Model.NameSort
+    </a>
+    <a class="aBtns" asp-page="./Index" asp-route-sortOrder="@Model.TypeSort" asp-route-searchStringType="@Model.CurrentTypeFilter" asp-route-searchStringName="@Model.CurrentNameFilter">
+        @Model.TypeSort
+    </a>
 </div>
 <section class="wrap">
     @foreach (var item in Model.Weapons)

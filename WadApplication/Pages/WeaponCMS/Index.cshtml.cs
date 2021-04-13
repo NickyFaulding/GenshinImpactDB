@@ -23,13 +23,15 @@ namespace WadApplication.Pages.WeaponCMS
         public string CurrentNameFilter { get; set; }
         public string CurrentTypeFilter { get; set; }
 
+        public string[] types = { "Bow", "Claymore", "Catalyst", "Polearm", "Sword" };
+
         public IList<Weapon> Weapons { get;set; }
 
         public async Task OnGetAsync(string sortOrder, string searchStringName, string searchStringType)
         {
-            NameSort = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "Name";
-            TypeSort = sortOrder == "Type" ? "type_desc" : "Type";
-
+            NameSort = sortOrder == "Name🔽" ? "Name🔼" : "Name🔽";
+            TypeSort = sortOrder == "Rarity🔽" ? "Rarity🔼" : "Rarity🔽";
+            
             CurrentNameFilter = searchStringName;
             CurrentTypeFilter = searchStringType;
 
@@ -47,17 +49,17 @@ namespace WadApplication.Pages.WeaponCMS
 
             switch (sortOrder)
             {
-                case "Name":
+                case "Name🔼":
                     weaponIQ = weaponIQ.OrderBy(w => w.Name);
                     break;
-                case "name_desc":
+                case "Name🔽":
                     weaponIQ = weaponIQ.OrderByDescending(w => w.Name);
                     break;
-                case "Type":
-                    weaponIQ = weaponIQ.OrderBy(w => w.Type);
+                case "Rarity🔽":
+                    weaponIQ = weaponIQ.OrderBy(w => w.Rarity);
                     break;
-                case "type_desc":
-                    weaponIQ = weaponIQ.OrderByDescending(w => w.Type);
+                case "Rarity🔼":
+                    weaponIQ = weaponIQ.OrderByDescending(w => w.Rarity);
                     break;
                 default:
                     weaponIQ = weaponIQ.OrderBy(w => w.WeaponID);

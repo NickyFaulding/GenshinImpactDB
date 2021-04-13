@@ -6,10 +6,32 @@
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 
-<h1>Character Content Management Page</h1>
+<h1>Character Management Page</h1>
 
-<a class="aBtns" asp-page="CreateCharacter">Create New</a>
+<div class="searchGrid">
+    <a class="aBtns" asp-page="CreateCharacter">Create New Character</a>
 
+    <form asp-page="./Index" method="get">
+        <a class="aBtns" id="toggleSearch">Filters</a>
+        <input type="text" name="searchStringName" value="@Model.CurrentNameFilter" placeholder="Enter character name" />
+        <input type="submit" value="Search" class="" />
+        <div class="AdvancedSearch">
+            <input type="submit" asp-route-searchStringElement="@Model.CurrentVisionFilter" name="searchStringVision" value="Anemo" />
+            <input type="submit" asp-route-searchStringElement="@Model.CurrentVisionFilter" name="searchStringVision" value="Pyro" />
+            <input type="submit" asp-route-searchStringElement="@Model.CurrentVisionFilter" name="searchStringVision" value="Cryo" />
+            <input type="submit" asp-route-searchStringElement="@Model.CurrentVisionFilter" name="searchStringVision" value="Hydro" />
+            <input type="submit" asp-route-searchStringElement="@Model.CurrentVisionFilter" name="searchStringVision" value="Electro" />
+            <input type="submit" asp-route-searchStringElement="@Model.CurrentVisionFilter" name="searchStringVision" value="Dendro" />
+            <input type="submit" asp-route-searchStringElement="@Model.CurrentVisionFilter" name="searchStringVision" value="Adaptive" />
+        </div>
+    </form>
+    <a class="aBtns" asp-page="./Index" asp-route-sortOrder="@Model.NameSort" asp-route-searchStringName="@Model.CurrentNameFilter">
+        @Model.NameSort
+    </a>
+    <a class="aBtns" asp-page="./Index" asp-route-sortOrder="@Model.VisionSort" asp-route-searchStringVision="@Model.CurrentVisionFilter">
+        @Model.VisionSort
+    </a>
+</div>
 <section class="wrap">
     @foreach (var item in Model.Character)
     {

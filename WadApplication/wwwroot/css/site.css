@@ -43,6 +43,7 @@ h2{
     font-size: var(--primaryFontSize);
     background-color: var(--navbarColourLight);
     padding-bottom: 10px;
+    margin-bottom: 30px;
 }
 
 .footer {
@@ -66,6 +67,8 @@ h2{
 .main-nav li{
     text-align:center;
     margin-left:15px auto;
+    padding-bottom: 5px;
+    padding-top: 5px;
 }
 
 .logo{

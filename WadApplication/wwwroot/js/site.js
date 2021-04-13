@@ -3,6 +3,8 @@ let accountNav = document.getElementById("js-account-menu");
 
 let navBarToggle = document.getElementById("js-navbar-toggle");
 
+let logobkground = document.getElementById("logo");
+
 $('.AdvancedSearch').toggle();
 $('#logout').on('click', function () { $('#logoutForm').submit(); })
 $('#Search').on('click', function () { $('#SearchBar').submit(); })
@@ -13,5 +15,4 @@ $('#toggleSearch').on('click', function(){
 
 navBarToggle.addEventListener("click", function () {
     mainNav.classList.toggle("active");
-    accountNav.classList.toggle("active");
 });

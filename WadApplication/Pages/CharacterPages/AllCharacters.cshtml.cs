@@ -14,6 +14,7 @@ namespace WadApplication.Pages
         private readonly ApplicationDbContext _db;
 
         public string CurrentElementFilter { get; set; }
+        public string CurrentRarityFilter { get; set; }
 
         public AllCharactersModel(ApplicationDbContext db)
         {
@@ -28,6 +29,8 @@ namespace WadApplication.Pages
                                           select c;
 
             CurrentElementFilter = searchStringElement;
+            CurrentRarityFilter = searchStringRarity;
+
 
             if (!String.IsNullOrEmpty(searchStringElement))
             {
