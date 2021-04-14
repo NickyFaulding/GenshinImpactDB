@@ -1,25 +1,21 @@
 ﻿@page
-@model WadApplication.Pages.AllWeaponsModel
+@model WadApplication.Pages.WeaponCMS.WeaponCMS
 @{
 }
 <h1>All Avaliable Weapons</h1>
 
-<form asp-page="./AllWeapons" method="get">
-    <div class="">
-            <input type="submit" name="searchStringType" value="Bow" />
-            <input type="submit" name="searchStringType" value="Catalyst" />
-            <input type="submit" name="searchStringType" value="Claymore" />
-            <input type="submit" name="searchStringType" value="Sword" />
-    </div>
-</form>
-<form asp-page="./AllWeapons" method="get">
-    <div class="">
-            <input type="submit" name="searchStringRarity" value="⭐⭐" />
-            <input type="submit" name="searchStringRarity" value="⭐⭐⭐" />
-            <input type="submit" name="searchStringRarity" value="⭐⭐⭐⭐" />
-            <input type="submit" name="searchStringRarity" value="⭐⭐⭐⭐⭐" />
-    </div>
-</form>
+<div class="searchGrid">
+    <form asp-page="./AllWeapons" method="get">
+        <partial name="_filterWeapon" />
+        <a class="aBtns" asp-page="./AllWeapons" asp-route-sortOrder="@Model.NameSort" asp-route-searchStringName="@Model.CurrentNameFilter" asp-route-searchStringType="@Model.CurrentTypeFilter">
+            @Model.NameSort
+        </a>
+        <a class="aBtns" asp-page="./AllWeapons" asp-route-sortOrder="@Model.TypeSort" asp-route-searchStringType="@Model.CurrentTypeFilter" asp-route-searchStringName="@Model.CurrentNameFilter">
+            @Model.TypeSort
+        </a>
+    </form>
+</div>
+
 <section class="wrap">
     @foreach (var item in Model.Weapons)
     {

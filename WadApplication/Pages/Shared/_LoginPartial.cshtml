@@ -3,23 +3,33 @@
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
 
-    @if (SignInManager.IsSignedIn(User))
-    {
-        <li>
-            <a id="manage" class="nav-links" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">My Profile</a>
-        </li>
-        <li>
-            <form id="logoutForm" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })">
-                <a href="javascript:void(0)" id="logout" class="nav-links">Logout</a>
-            </form>
-        </li>
-    }
-    else
-    {
-        <li>
-            <a class="nav-links" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
-        </li>
-        <li>
-            <a class="nav-links" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
-        </li>
-    }
+@if (SignInManager.IsSignedIn(User))
+{
+    <li>
+        <div class="dropdown">
+            <a class="dropbtn">Admin Panel</a>
+            <div class="dropdown-content">
+                <a class="nav-links" asp-area="" asp-page="/ArtifactCMS/ArtifactsCMS">Artifacts Manager</a>
+                <a class="nav-links" asp-area="" asp-page="/WeaponCMS/WeaponsCMS">Weapon Manager</a>
+                <a class="nav-links" asp-area="" asp-page="/CharacterCMS/CharactersCMS">Character Manager</a>
+            </div>
+        </div>
+    </li>
+    <li>
+        <a id="manage" class="nav-links" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">My Profile</a>
+    </li>
+    <li>
+        <form id="logoutForm" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })">
+            <a href="javascript:void(0)" id="logout" class="nav-links">Logout</a>
+        </form>
+    </li>
+}
+else
+{
+    <li>
+        <a class="nav-links" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
+    </li>
+    <li>
+        <a class="nav-links" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
+    </li>
+}

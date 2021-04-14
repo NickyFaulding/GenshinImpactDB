@@ -1,5 +1,5 @@
 ﻿@page
-@model WadApplication.Pages.WeaponCMS.IndexModel
+@model WadApplication.Pages.WeaponCMS.WeaponCMS
 
 @{
     ViewData["Title"] = "Weapon CMS";
@@ -11,30 +11,15 @@
 <div class="searchGrid">
     <a asp-page="CreateWeapon" class="aBtns">Create New Weapon</a>
 
-    <form asp-page="./Index" method="get">
-        <select name="searchStringType" value="@Model.CurrentNameFilter" onchange="this.form.submit()">
-            @foreach (var item in Model.types)
-            {
-                if (item == Model.CurrentTypeFilter)
-                {
-                    <option selected="selected" value="@item">@item</option>
-                }
-                else
-                {
-                    <option value="@item">@item</option>
-                }
-            }
-
-        </select>
-        <input type="text" name="searchStringName" value="@Model.CurrentNameFilter" placeholder="Enter weapon name" />
-        <input type="submit" value="Search" class="" />
+    <form asp-page="./WeaponsCMS" method="get">
+        <partial name="_filterWeapon" />
+        <a class="aBtns" asp-page="./WeaponsCMS" asp-route-sortOrder="@Model.NameSort" asp-route-searchStringName="@Model.CurrentNameFilter" asp-route-searchStringType="@Model.CurrentTypeFilter">
+            @Model.NameSort
+        </a>
+        <a class="aBtns" asp-page="./WeaponsCMS" asp-route-sortOrder="@Model.TypeSort" asp-route-searchStringType="@Model.CurrentTypeFilter" asp-route-searchStringName="@Model.CurrentNameFilter">
+            @Model.TypeSort
+        </a>
     </form>
-    <a class="aBtns" asp-page="./Index" asp-route-sortOrder="@Model.NameSort" asp-route-searchStringName="@Model.CurrentNameFilter" asp-route-searchStringType="@Model.CurrentTypeFilter">
-        @Model.NameSort
-    </a>
-    <a class="aBtns" asp-page="./Index" asp-route-sortOrder="@Model.TypeSort" asp-route-searchStringType="@Model.CurrentTypeFilter" asp-route-searchStringName="@Model.CurrentNameFilter">
-        @Model.TypeSort
-    </a>
 </div>
 <section class="wrap">
     @foreach (var item in Model.Weapons)
@@ -47,7 +32,7 @@
             </div>
 
             <h3>
-                @Html.DisplayFor(modelItem => item.Name)
+                @item.Name
             </h3>
             <div class="cms-details">
                 <a asp-page="./EditWeapon" asp-route-id="@item.WeaponID">Edit</a> |

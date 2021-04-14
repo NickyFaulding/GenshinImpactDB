@@ -9,11 +9,11 @@ using WadApplication.Model;
 
 namespace WadApplication.Pages.WeaponCMS
 {
-    public class IndexModel : PageModel
+    public class WeaponCMS : PageModel
     {
         private readonly WadApplication.Model.ApplicationDbContext _context;
 
-        public IndexModel(WadApplication.Model.ApplicationDbContext context)
+        public WeaponCMS(WadApplication.Model.ApplicationDbContext context)
         {
             _context = context;
         }

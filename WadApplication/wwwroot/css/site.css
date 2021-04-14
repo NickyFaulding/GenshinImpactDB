@@ -476,4 +476,43 @@ input[type=submit]:hover
         max-width: 400px;
         box-shadow:  3px 3px rgba(0, 0, 0, 0.6);
     }
+
+    .dropdown{
+        float: left;
+        overflow: hidden;
+    }
+
+    .dropdown-content{
+        display: none;
+        position: absolute;
+        background-color: var(--navbarColourLight);
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+    .dropdown-content a {
+        float: none;
+        color: var(--navTextColour);
+        text-decoration: none;
+        padding-bottom: 10px;
+        display: block;
+        text-align: left;
+        margin-left:20px;
+        margin-right: 20px;
+        margin-top: 10px;
+      }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+      }
+    .dropdown .dropbtn {
+    font-size: 16px;
+    border: none;
+    outline: none;
+    color: var(--navTextColour);
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit; /* Important for vertical align on mobile phones */
+    margin: 0; /* Important for vertical align on mobile phones */
+    }
 }

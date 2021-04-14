@@ -1,0 +1,46 @@
+﻿
+    <select name="searchStringElement" value="@Model.CurrentElementFilter" onchange="this.form.submit()">
+        <option value="" disabled selected>Element Filter</option>
+        @foreach (var item in Model.visionTypes)
+        {
+            if (item == Model.CurrentElementFilter)
+            {
+                <option selected="selected" value="@item">@item</option>
+            }
+            else
+            {
+                <option value="@item">@item</option>
+            }
+        }
+    </select>
+    <select name="searchStringWeapon" value="@Model.CurrentWeaponFilter" onchange="this.form.submit()">
+        <option value="" disabled selected>Weapon Type Filter</option>
+        @foreach (var item in Model.weaponTypes)
+        {
+            if (item == Model.CurrentWeaponFilter)
+            {
+                <option selected="selected" value="@item">@item</option>
+            }
+            else
+            {
+                <option value="@item">@item</option>
+            }
+        }
+    </select>
+    <select name="searchStringRarity" value="@Model.CurrentRarityFilter" onchange="this.form.submit()">
+        <option value="" disabled selected>Rarity Filter</option>
+        @foreach (var item in Model.rarity)
+        {
+            if (item == Model.CurrentRarityFilter)
+            {
+                <option selected="selected" value="@item">@item</option>
+            }
+            else
+            {
+                <option value="@item">@item</option>
+            }
+        }
+    </select>
+    <br />
+    <input type="text" name="searchStringName" value="@Model.CurrentNameFilter" placeholder="Enter Character name" />
+    <input type="submit" value="Search" class="" />

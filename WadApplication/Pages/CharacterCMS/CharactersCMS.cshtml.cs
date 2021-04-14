@@ -9,59 +9,60 @@ using WadApplication.Model;
 
 namespace WadApplication.Pages.CharacterCMS
 {
-    public class IndexModel : PageModel
+    public class CharactersCMS : PageModel
     {
-        private readonly WadApplication.Model.ApplicationDbContext _context;
+        private readonly ApplicationDbContext _db;
 
-        public IndexModel(WadApplication.Model.ApplicationDbContext context)
-        {
-            _context = context;
-        }
-        public string NameSort { get; set; }
-        public string VisionSort { get; set; }
+        public string CurrentElementFilter { get; set; }
+        public string CurrentWeaponFilter { get; set; }
         public string CurrentNameFilter { get; set; }
-        public string CurrentVisionFilter { get; set; }
-        public IList<Character> Character { get;set; }
+        public string CurrentRarityFilter { get; set; }
 
-        public async Task OnGetAsync(string sortOrder, string searchStringName, string searchStringVision)
+        public CharactersCMS(ApplicationDbContext db)
         {
-            NameSort = sortOrder == "Name🔽" ? "Name🔼" : "Name🔽";
-            VisionSort = sortOrder == "Vision🔽" ? "Vision🔼" : "Vision🔽";
+            _db = db;
+        }
 
+        public string[] rarity = { "⭐⭐⭐⭐", "⭐⭐⭐⭐⭐" };
+        public string[] weaponTypes = { "Bow", "Claymore", "Catalyst", "Polearm", "Sword" };
+        public string[] visionTypes = { "Anemo", "Electro", "Cryo", "Hydro", "Pyro", "Geo", "Dendro", "Adaptive" };
+
+
+        public IList<Character> Characters { get; set; }
+
+        public async Task OnGetAsync(string sortOrder,
+            string searchStringRarity,
+            string searchStringElement,
+            string searchStringName,
+            string searchStringWeapon)
+        {
+            IQueryable<Character> characterIQ = from c in _db.AllCharacters
+                                                select c;
+
+            CurrentElementFilter = searchStringElement;
+            CurrentRarityFilter = searchStringRarity;
+            CurrentWeaponFilter = searchStringWeapon;
             CurrentNameFilter = searchStringName;
-            CurrentVisionFilter = searchStringVision;
 
-            IQueryable<Character> characterIQ = from c in _context.AllCharacters
-                                          select c;
 
             if (!String.IsNullOrEmpty(searchStringName))
             {
                 characterIQ = characterIQ.Where(w => w.Name.Contains(searchStringName));
             }
-            if (!String.IsNullOrEmpty(searchStringVision))
+            if (!String.IsNullOrEmpty(searchStringElement))
             {
-                characterIQ = characterIQ.Where(w => w.Vision.Contains(searchStringVision));
+                characterIQ = characterIQ.Where(w => w.Vision.Contains(searchStringElement));
+            }
+            if (!String.IsNullOrEmpty(searchStringRarity))
+            {
+                characterIQ = characterIQ.Where(w => w.Rarity.Equals(searchStringRarity.Length));
+            }
+            if (!String.IsNullOrEmpty(searchStringWeapon))
+            {
+                characterIQ = characterIQ.Where(w => w.WeaponType.Contains(searchStringWeapon));
             }
 
-            switch (sortOrder)
-            {
-                case "Name🔼":
-                    characterIQ = characterIQ.OrderBy(c => c.Name);
-                    break;
-                case "Name🔽":
-                    characterIQ = characterIQ.OrderByDescending(c => c.Name);
-                    break;
-                case "Vision🔼":
-                    characterIQ = characterIQ.OrderBy(c => c.Vision);
-                    break;
-                case "Vision🔽":
-                    characterIQ = characterIQ.OrderByDescending(c => c.Vision);
-                    break;
-                default:
-                    characterIQ = characterIQ.OrderBy(c => c.CharacterID);
-                    break;
-            }
-            Character = await characterIQ.AsNoTracking().ToListAsync();
+            Characters = await characterIQ.AsNoTracking().ToListAsync();
         }
     }
 }

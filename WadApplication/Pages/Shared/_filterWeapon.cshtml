@@ -1,0 +1,17 @@
+﻿<select name="searchStringType" value="@Model.CurrentNameFilter" onchange="this.form.submit()">
+    @foreach (var item in Model.types)
+    {
+        if (item == Model.CurrentTypeFilter)
+        {
+            <option selected="selected" value="@item">@item</option>
+        }
+        else
+        {
+            <option value="@item">@item</option>
+        }
+    }
+
+</select>
+<input type="text" name="searchStringName" value="@Model.CurrentNameFilter" placeholder="Enter weapon name" />
+<input type="submit" value="Search" class="" />
+<br />

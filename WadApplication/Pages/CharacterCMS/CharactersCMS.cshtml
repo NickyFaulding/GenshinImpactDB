@@ -1,5 +1,5 @@
 ﻿@page
-@model WadApplication.Pages.CharacterCMS.IndexModel
+@model WadApplication.Pages.CharacterCMS.CharactersCMS
 
 @{
     ViewData["Title"] = "Index";
@@ -8,49 +8,31 @@
 
 <h1>Character Management Page</h1>
 
-<div class="searchGrid">
-    <a class="aBtns" asp-page="CreateCharacter">Create New Character</a>
+<a class="aBtns" asp-page="CreateCharacter">Create New Character</a>
 
-    <form asp-page="./Index" method="get">
-        <a class="aBtns" id="toggleSearch">Filters</a>
-        <input type="text" name="searchStringName" value="@Model.CurrentNameFilter" placeholder="Enter character name" />
-        <input type="submit" value="Search" class="" />
-        <div class="AdvancedSearch">
-            <input type="submit" asp-route-searchStringElement="@Model.CurrentVisionFilter" name="searchStringVision" value="Anemo" />
-            <input type="submit" asp-route-searchStringElement="@Model.CurrentVisionFilter" name="searchStringVision" value="Pyro" />
-            <input type="submit" asp-route-searchStringElement="@Model.CurrentVisionFilter" name="searchStringVision" value="Cryo" />
-            <input type="submit" asp-route-searchStringElement="@Model.CurrentVisionFilter" name="searchStringVision" value="Hydro" />
-            <input type="submit" asp-route-searchStringElement="@Model.CurrentVisionFilter" name="searchStringVision" value="Electro" />
-            <input type="submit" asp-route-searchStringElement="@Model.CurrentVisionFilter" name="searchStringVision" value="Dendro" />
-            <input type="submit" asp-route-searchStringElement="@Model.CurrentVisionFilter" name="searchStringVision" value="Adaptive" />
-        </div>
-    </form>
-    <a class="aBtns" asp-page="./Index" asp-route-sortOrder="@Model.NameSort" asp-route-searchStringName="@Model.CurrentNameFilter">
-        @Model.NameSort
-    </a>
-    <a class="aBtns" asp-page="./Index" asp-route-sortOrder="@Model.VisionSort" asp-route-searchStringVision="@Model.CurrentVisionFilter">
-        @Model.VisionSort
-    </a>
-</div>
-<section class="wrap">
-    @foreach (var item in Model.Character)
-    {
-        <div class="filmThumb">
-            <div>
-                <a>
-                    <img src=@(string.Format(@"\images\CharacterImages\CharacterIcons\{0}.png",item.Name.Replace(" ", "%20"))) alt="@item.Name">
-                </a>
-            </div>
+<form asp-page="./CharactersCMS" method="get">
+    <partial name="_filterCharacter" />
+</form>
 
-            <h3>
-                @Html.DisplayFor(modelItem => item.Name)
-            </h3>
-            <div class="cms-details">
-                <a asp-page="./EditCharacter" asp-route-id="@item.CharacterID">Edit</a> |
-                <a asp-page="/CharacterPages/CharacterDetailPage" asp-route-id="@item.CharacterID">Details</a> |
-                <a asp-page="./DeleteCharacter" asp-route-id="@item.CharacterID">Delete</a>
+    <section class="wrap">
+        @foreach (var item in Model.Characters)
+        {
+            <div class="filmThumb">
+                <div>
+                    <a>
+                        <img src=@(string.Format(@"\images\CharacterImages\CharacterIcons\{0}.png", item.Name.Replace(" ", "%20"))) alt="@item.Name">
+                    </a>
+                </div>
+
+                <h3>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </h3>
+                <div class="cms-details">
+                    <a asp-page="./EditCharacter" asp-route-id="@item.CharacterID">Edit</a> |
+                    <a asp-page="/CharacterPages/CharacterDetailPage" asp-route-id="@item.CharacterID">Details</a> |
+                    <a asp-page="./DeleteCharacter" asp-route-id="@item.CharacterID">Delete</a>
+                </div>
             </div>
-        </div>
-    }
-</section>
-<a class="aBtns" asp-page="./CharactersCMS">Back to full List</a>
+        }
+    </section>
+    <a class="aBtns" asp-page="./CharactersCMS">Back to full List</a>
