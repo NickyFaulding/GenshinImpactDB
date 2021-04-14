@@ -34,6 +34,8 @@ namespace WadApplication.Pages
 
         public List<string> ascensionitems { get; set; }
 
+        const string SessionFavourites = "_Favourites";
+
         public CharacterDetailPage(ApplicationDbContext db)
         {
             _db = db;

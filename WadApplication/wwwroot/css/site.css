@@ -164,7 +164,7 @@ section {
     background-color: var(--ColourDark);
     padding:5px;
     margin:5px;
-    max-width: 400px;
+    max-width: 95%;
     box-shadow:  3px 3px rgba(0, 0, 0, 0.6);
 }
 
@@ -176,13 +176,9 @@ section {
     box-shadow:  3px 3px rgba(0, 0, 0, 0.6);
 }
 
-#charDetails {
-margin-top: 120px;
-}
-
 .characterDetail-Style {
     display: grid;
-    grid-template-columns: 400px 400px;
+    grid-template-columns: 100%;
     justify-content: center;
     height: auto;
     grid-template-rows: max-content;
@@ -190,8 +186,8 @@ margin-top: 120px;
     padding-bottom: 20px;
     color: white;
     background-color: var(--ColourDark);
-    width: 900px;
-    margin-left: 25%;
+    width: 95%;
+    margin-left: 2%;
     box-shadow: 3px 3px rgb(0 0 0 / 60%);
 }
 
@@ -208,7 +204,7 @@ margin-top: 120px;
     background-color: var(--ColourDark);
     padding:5px;
     margin:5px;
-    max-width: 400px;
+    max-width: 95%;
     box-shadow:  3px 3px rgba(0, 0, 0, 0.6);
 }
 
@@ -231,8 +227,9 @@ margin-top: 120px;
 
 .profileFlex{
     display: flex;
-    text-decoration: none;
-    margin-left: 42vw;
+    text-decoration: none;    
+    width: 100%;
+    justify-content: center;
 }
 #profileAbtn{
     margin-left:5px;
@@ -241,7 +238,7 @@ margin-top: 120px;
 
 section > div.filmThumb {
     padding: 15px;
-    width:200px;
+    width:150px;
     display: grid;
     grid-template-columns: initial;
     grid-template-rows: max-content;
@@ -368,9 +365,10 @@ input[type=submit]:hover
     box-shadow:  3px 3px rgba(0, 0, 0, 0.6);
 }
 
-.formBoundry {
-    width: 50%;
-    margin-left: 25%;
+.formBoundry {    
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
     margin-top:20px;
     margin-bottom: 20px;
     background-color: var(--ColourDarkBack);
@@ -433,5 +431,45 @@ input[type=submit]:hover
         width: 100%;
         max-width: 450px;
         height: auto;
+    }
+        
+    .formBoundry {    
+        width: 40%;
+    }
+
+    section > div.filmThumb {
+        width:200px;
+    }
+
+    .characterDetail-Style {
+        display: grid;
+        grid-template-columns: 400px 400px;
+        justify-content: center;
+        height: auto;
+        grid-template-rows: max-content;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        color: white;
+        background-color: var(--ColourDark);
+        width: 900px;
+        margin-left: 25%;
+        box-shadow: 3px 3px rgb(0 0 0 / 60%);
+    }
+    #charDetails {
+        margin-top: 120px;
+        }
+    #characterName {
+        background-color: var(--ColourDark);
+        padding:5px;
+        margin:5px;
+        max-width: 400px;
+        box-shadow:  3px 3px rgba(0, 0, 0, 0.6);
+    }
+    .grid-item{
+        background-color: var(--ColourDark);
+        padding:5px;
+        margin:5px;
+        max-width: 400px;
+        box-shadow:  3px 3px rgba(0, 0, 0, 0.6);
     }
 }

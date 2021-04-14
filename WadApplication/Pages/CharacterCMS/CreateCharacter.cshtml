@@ -9,7 +9,7 @@
 <h1>Create Character</h1>
 
 <div class="formBoundry">
-    <form method="post">
+    <form enctype="multipart/form-data" method="post">
         <label asp-for="Character.Name" class="control-label"></label>
         <div class="form-group">
             <input asp-for="Character.Name" class="form-control" />
@@ -32,6 +32,7 @@
                 <option value="Bow">Bow</option>
                 <option value="Catalyst">Catalyst</option>
                 <option value="Claymore">Claymore</option>
+                <option value="Claymore">Polearm</option>
                 <option value="Sword">Sword</option>
             </select>
         </div>
@@ -56,8 +57,14 @@
             <textarea asp-for="Character.Description" class="form-control"></textarea>
         </div>
         <div class="form-group">
+            <input asp-for="IconUpload.iconFile" type="file" />
+        </div>
+        <div class="form-group">
+            <input asp-for="PortraitUpload.portraitFile" type="file" />
+        </div>
+        <div class="form-group">
             <div asp-validation-summary="All" class="text-danger"></div>
-            <input type="submit" value="Create" />
+            <input asp-page-handler="Upload" type="submit" value="Create" />
         </div>
     </form>
 </div>

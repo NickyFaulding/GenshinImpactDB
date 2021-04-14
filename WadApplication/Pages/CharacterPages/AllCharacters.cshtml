@@ -6,26 +6,51 @@
 <h1>All Playable Characters</h1>
 
 <form asp-page="./AllCharacters" method="get">
-    <div class="">
-        <p>
-            <input type="submit" asp-route-searchStringRarity="@Model.CurrentRarityFilter" name="searchStringRarity" value="⭐⭐⭐⭐" />
-            <input type="submit" asp-route-searchStringRarity="@Model.CurrentRarityFilter"name="searchStringRarity" value="⭐⭐⭐⭐⭐" />
-        </p>
-    </div>
-</form>
-
-<form asp-page="./AllCharacters" method="get">
-    <div class="">
-        <p>
-            <input type="submit" asp-route-searchStringElement="@Model.CurrentElementFilter" name="searchStringElement" value="Anemo" />
-            <input type="submit" asp-route-searchStringElement="@Model.CurrentElementFilter" name="searchStringElement" value="Pyro" />
-            <input type="submit" asp-route-searchStringElement="@Model.CurrentElementFilter" name="searchStringElement" value="Cryo" />
-            <input type="submit" asp-route-searchStringElement="@Model.CurrentElementFilter" name="searchStringElement" value="Hydro" />
-            <input type="submit" asp-route-searchStringElement="@Model.CurrentElementFilter" name="searchStringElement" value="Electro" />
-            <input type="submit" asp-route-searchStringElement="@Model.CurrentElementFilter" name="searchStringElement" value="Dendro" />
-            <input type="submit" asp-route-searchStringElement="@Model.CurrentElementFilter" name="searchStringElement" value="Adaptive" />
-        </p>
-    </div>
+    <select name="searchStringElement" value="@Model.CurrentElementFilter" onchange="this.form.submit()">
+        <option value="" disabled selected>Element Filter</option>
+        @foreach (var item in Model.visionTypes)
+        {
+            if (item == Model.CurrentElementFilter)
+            {
+                <option selected="selected" value="@item">@item</option>
+            }
+            else
+            {
+                <option value="@item">@item</option>
+            }
+        }
+    </select>
+    <select name="searchStringWeapon" value="@Model.CurrentWeaponFilter" onchange="this.form.submit()">
+        <option value="" disabled selected>Weapon Type Filter</option>
+        @foreach (var item in Model.weaponTypes)
+        {
+            if (item == Model.CurrentWeaponFilter)
+            {
+                <option selected="selected" value="@item">@item</option>
+            }
+            else
+            {
+                <option value="@item">@item</option>
+            }
+        }
+    </select>
+    <select name="searchStringRarity" value="@Model.CurrentRarityFilter" onchange="this.form.submit()">
+        <option value="" disabled selected>Rarity Filter</option>
+        @foreach (var item in Model.rarity)
+        {
+            if (item == Model.CurrentRarityFilter)
+            {
+                <option selected="selected" value="@item">@item</option>
+            }
+            else
+            {
+                <option value="@item">@item</option>
+            }
+        }
+    </select>
+    <br />
+    <input type="text" name="searchStringName" value="@Model.CurrentNameFilter" placeholder="Enter Character name" />
+    <input type="submit" value="Search" class="" />
 </form>
 
 <section class="wrap">

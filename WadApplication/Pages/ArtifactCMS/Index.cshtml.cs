@@ -11,18 +11,33 @@ namespace WadApplication.Pages.ArtifactCMS
 {
     public class IndexModel : PageModel
     {
-        private readonly WadApplication.Model.ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public IndexModel(WadApplication.Model.ApplicationDbContext context)
+        public IndexModel(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        public IList<Artifact> Artifact { get;set; }
+        public string CurrentSetFilter { get; set; }
 
-        public async Task OnGetAsync()
+        public IList<Artifact> Artifact { get; set; }
+
+        public IList<ArtifactSet> ArtifactSet { get;set; }
+
+        public async Task OnGetAsync(string sortOrder, string searchStringSet)
         {
-            Artifact = await _context.AllArtifacts.ToListAsync();
+            IQueryable<Artifact> artifactIQ = from a in _context.AllArtifacts
+                                              select a;
+
+            CurrentSetFilter = searchStringSet;
+
+            if (!String.IsNullOrEmpty(searchStringSet))
+            {
+                artifactIQ = artifactIQ.Where(a => a.SetName.Contains(searchStringSet));
+            }
+
+            ArtifactSet = await _context.ArtifactSets.ToListAsync();
+            Artifact = await artifactIQ.AsNoTracking().ToListAsync();
         }
     }
 }

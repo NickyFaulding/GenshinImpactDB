@@ -8,8 +8,25 @@
 
 <h1>Artifacts Management Page</h1>
 
-<a class="aBtns" asp-page="CreateArtifact">Create New Artifact</a>
-
+<div class="searchGrid">
+    <a class="aBtns" asp-page="CreateArtifact">Create New Artifact</a>
+    <form asp-page="./AllArtifacts" method="get">
+        <select name="searchStringSet" value="@Model.CurrentSetFilter" onchange="this.form.submit()">
+            <option value="" disabled selected>Set Filter</option>
+            @foreach (var item in Model.ArtifactSet)
+            {
+                if (item.SetName == Model.CurrentSetFilter)
+                {
+                    <option selected="selected" value="@item.SetName">@item.SetName</option>
+                }
+                else
+                {
+                    <option value="@item.SetName">@item.SetName</option>
+                }
+            }
+        </select>
+    </form>
+</div>
 <section class="wrap">
     @foreach (var item in Model.Artifact)
     {
@@ -29,5 +46,6 @@
             </div>
         </div>
     }
-
 </section>
+
+<a class="aBtns" asp-page="./Index">Back to full List</a>
