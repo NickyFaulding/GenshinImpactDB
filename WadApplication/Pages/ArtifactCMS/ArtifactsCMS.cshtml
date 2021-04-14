@@ -1,8 +1,8 @@
 ﻿@page
-@model WadApplication.Pages.ArtifactCMS.IndexModel
+@model WadApplication.Pages.ArtifactCMS.ArtifactsCMS
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "ArtifactsCMS";
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 
@@ -22,6 +22,22 @@
                 else
                 {
                     <option value="@item.SetName">@item.SetName</option>
+                }
+            }
+        </select>
+    </form>
+    <form asp-page="./AllArtifacts" method="get">
+        <select name="itemsCount" value="@Model.CurrentItemsCount" onchange="this.form.submit()">
+            <option value="" disabled selected>Items Per Page</option>
+            @foreach (var item in Model.pageItemsCount)
+            {
+                if (item == Model.CurrentItemsCount)
+                {
+                    <option selected="selected" value="@item">@item</option>
+                }
+                else
+                {
+                    <option value="@item">@item</option>
                 }
             }
         </select>
@@ -48,4 +64,26 @@
     }
 </section>
 
+@{
+    var prevDisabled = !Model.Artifact.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.Artifact.HasNextPage ? "disabled" : "";
+}
+
+<a asp-page="./ArtifactsCMS"
+   asp-route-sortOrder="@Model.CurrentSortOrder"
+   asp-route-pageIndex="@(Model.Artifact.PageIndex - 1)"
+   asp-route-itemsCount="@Model.CurrentItemsCount"
+   asp-route-currentFilter="@Model.CurrentFilter"
+   class="aBtns @prevDisabled">
+    Previous
+</a>
+<a asp-page="./ArtifactsCMS"
+   asp-route-sortOrder="@Model.CurrentSortOrder"
+   asp-route-pageIndex="@(Model.Artifact.PageIndex + 1)"
+   asp-route-currentFilter="@Model.CurrentFilter"
+   asp-route-itemsCount="@Model.CurrentItemsCount"
+   class="aBtns @nextDisabled" >
+    Next
+</a>
+<br />
 <a class="aBtns" asp-page="./Index">Back to full List</a>

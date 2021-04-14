@@ -327,6 +327,10 @@ textarea{
     resize: vertical;
 }
 
+a.aBtns.disabled{
+    display: none;
+}
+
 .aBtns,
 input[type=submit],
 button
