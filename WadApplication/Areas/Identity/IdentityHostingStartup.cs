@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,6 +13,8 @@ namespace WadApplication.Areas.Identity
 {
     public class IdentityHostingStartup : IHostingStartup
     {
+        private string _connection = null;
+
         public void Configure(IWebHostBuilder builder)
         {
             builder.ConfigureServices((context, services) => {
