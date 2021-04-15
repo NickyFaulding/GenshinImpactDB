@@ -1,0 +1,22 @@
+﻿@foreach (var item in Model)
+{
+    <div class="filmThumb">
+        <div>
+            <a asp-page="CharacterDetailPage" asp-route-id="@item.CharacterID">
+                <img src=@(string.Format(@"\images\CharacterImages\CharacterIcons\{0}.png",item.Name.Replace(" ", "%20"))) alt="@item.Name">
+            </a>
+        </div>
+        <h3>
+            @item.Name
+            <br />
+            @if (item.Vision == "Adaptive")
+            {
+                <img src="~/images/ElementIcons/Adaptive2.gif" alt="Adaptive" height="48" width="48" />
+            }
+            else
+            {
+                <img src=@(string.Format(@"/images/ElementIcons/{0}2.png",item.Vision)) alt="@item.Vision" height="48" width="48" />
+            }
+        </h3>
+    </div>
+}

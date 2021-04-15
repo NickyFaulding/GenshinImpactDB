@@ -5,7 +5,6 @@ let navBarToggle = document.getElementById("js-navbar-toggle");
 
 let logobkground = document.getElementById("logo");
 
-$('.AdvancedSearch').toggle();
 $('#logout').on('click', function () { $('#logoutForm').submit(); })
 $('#Search').on('click', function () { $('#SearchBar').submit(); })
 $('.backBtn').on('click', function(){ history.go(-1);})

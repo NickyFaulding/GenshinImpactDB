@@ -1,4 +1,5 @@
-﻿@page
+﻿@page "{handler?}"
+
 @model WadApplication.Pages.AllCharactersModel
 @{
 }
@@ -6,32 +7,33 @@
 <h1>All Playable Characters</h1>
 
 <form asp-page="./AllCharacters" method="get">
-    <partial name="_filterCharacter" />
+    @*<partial name="_filterCharacter" />*@
+    <input type="text" name="searchStringName" value="@Model.CurrentNameFilter" placeholder="Enter Character name" id="load" />
+    @*<input type="submit" value="Search" class="" />*@
 </form>
 
-<section class="wrap">
-    @foreach (var item in Model.Characters)
-    {
-        <div class="filmThumb">
-            <div>
-                <a asp-page="CharacterDetailPage" asp-route-id="@item.CharacterID">
-                    <img src=@(string.Format(@"\images\CharacterImages\CharacterIcons\{0}.png",item.Name.Replace(" ", "%20"))) alt="@item.Name">
-                </a>
-            </div>
-            <h3>
-                @item.Name
-                <br />
-                @if (item.Vision == "Adaptive")
-                {
-                    <img src="~/images/ElementIcons/Adaptive2.gif" alt="Adaptive" height="48" width="48" />
-                }
-                else
-                {
-                    <img src=@(string.Format(@"/images/ElementIcons/{0}2.png",item.Vision)) alt="@item.Vision" height="48" width="48" />
-                }
-            </h3>
-        </div>
-    }
+<section class="wrap" id="loadStuff">
 </section>
 
 <a class="aBtns" asp-page="./AllCharacters">Back to full List</a>
+
+@section scripts{
+    <script>
+        $(function () {         
+            $(document).ready(function () {
+                $('#loadStuff').load("AllCharacters/LoadCharacters")
+                })            
+
+            $('#load').on('input', function () {
+                var ssN = ($(this).val().toString());
+                var ssE = ($('#ssE').val());
+                var ssR = ($('#ssR').val());
+                var ssW = ($('#ssW').val());
+
+                console.log(ssN.length);
+
+                $('#loadStuff').load("AllCharacters/LoadCharacters" + "?searchStringName=" + ssN)                
+            });
+        });
+    </script>
+}

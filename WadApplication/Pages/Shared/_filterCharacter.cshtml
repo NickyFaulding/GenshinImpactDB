@@ -1,5 +1,5 @@
 ﻿
-    <select name="searchStringElement" value="@Model.CurrentElementFilter" onchange="this.form.submit()">
+    <select id="ssE" name="searchStringElement" value="@Model.CurrentElementFilter" onchange="this.form.submit()">
         <option value="" disabled selected>Element Filter</option>
         @foreach (var item in Model.visionTypes)
         {
@@ -13,7 +13,7 @@
             }
         }
     </select>
-    <select name="searchStringWeapon" value="@Model.CurrentWeaponFilter" onchange="this.form.submit()">
+    <select id="ssW" name="searchStringWeapon" value="@Model.CurrentWeaponFilter" onchange="this.form.submit()">
         <option value="" disabled selected>Weapon Type Filter</option>
         @foreach (var item in Model.weaponTypes)
         {
@@ -27,7 +27,7 @@
             }
         }
     </select>
-    <select name="searchStringRarity" value="@Model.CurrentRarityFilter" onchange="this.form.submit()">
+    <select id="ssR" name="searchStringRarity" value="@Model.CurrentRarityFilter" onchange="this.form.submit()">
         <option value="" disabled selected>Rarity Filter</option>
         @foreach (var item in Model.rarity)
         {
@@ -42,5 +42,3 @@
         }
     </select>
     <br />
-    <input type="text" name="searchStringName" value="@Model.CurrentNameFilter" placeholder="Enter Character name" />
-    <input type="submit" value="Search" class="" />
