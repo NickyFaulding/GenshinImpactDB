@@ -10,11 +10,11 @@
 
 <div class="formBoundry">
     <form enctype="multipart/form-data" method="post">
-        <label asp-for="Character.Name" class="control-label"></label>
+        <label asp-for="Character.Name" ></label>
         <div class="form-group">
             <input asp-for="Character.Name" class="form-control" />
         </div>
-        <label asp-for="Character.Vision" class="control-label"></label>
+        <label asp-for="Character.Vision" ></label>
         <div class="form-group">
             <select asp-for="Character.Vision">
                 <option value="Anemo">Anemo</option>
@@ -26,7 +26,7 @@
                 <option value="Adaptive">Adaptive</option>
             </select>
         </div>
-        <label asp-for="Character.WeaponType" class="control-label"></label>
+        <label asp-for="Character.WeaponType" ></label>
         <div class="form-group">
             <select asp-for="Character.WeaponType">
                 <option value="Bow">Bow</option>
@@ -36,7 +36,7 @@
                 <option value="Sword">Sword</option>
             </select>
         </div>
-        <label asp-for="Character.Nation" class="control-label"></label>
+        <label asp-for="Character.Nation" ></label>
         <div class="form-group">
             <select asp-for="Character.Nation">
                 <option value="Mondstadt">Mondstadt</option>
@@ -45,20 +45,22 @@
                 <option value="Unknown">Unknown</option>
             </select>
         </div>
-        <label asp-for="Character.Rarity" class="control-label"></label>
+        <label asp-for="Character.Rarity" ></label>
         <div class="form-group">
             <select asp-for="Character.Rarity">
                 <option value="4">⭐⭐⭐⭐</option>
                 <option value="5">⭐⭐⭐⭐⭐</option>
             </select>
         </div>
-        <label asp-for="Character.Description" class="control-label"></label>
+        <label asp-for="Character.Description" ></label>
         <div class="form-group">
             <textarea asp-for="Character.Description" class="form-control"></textarea>
         </div>
+        <label >Icon Image</label>
         <div class="form-group">
             <input asp-for="IconUpload.iconFile" type="file" />
         </div>
+        <label >Portrait Image</label>
         <div class="form-group">
             <input asp-for="PortraitUpload.portraitFile" type="file" />
         </div>
