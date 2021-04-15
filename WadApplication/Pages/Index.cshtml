@@ -1,12 +1,30 @@
 ﻿@page
 @model IndexModel
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
 
 @{
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <div class="centeredGrid">
-        <h1 class="">Genshin Impact DB</h1>
+@if (SignInManager.IsSignedIn(User))
+{
+    <div class="text-center">
+        <h1>Welcome back @User.Identity.Name</h1>
+        <div class="centeredGrid">
+            <h1 class="">Genshin Impact DB</h1>
+        </div>
     </div>
-</div>
+}
+else
+{
+
+    <div class="text-center">
+        <div class="centeredGrid">
+            <h1 class="">Genshin Impact DB</h1>
+        </div>
+    </div>
+
+}
