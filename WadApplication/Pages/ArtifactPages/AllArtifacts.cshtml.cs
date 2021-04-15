@@ -22,7 +22,8 @@ namespace WadApplication.Pages
 
         public void OnGet()
         {
-            ArtifactSetIcons = _db.ArtifactSets.Join(_db.AllArtifacts.Where(s => s.Type == "Flower of Life"), ArtifactSets => ArtifactSets.SetName, AllArtifacts => AllArtifacts.SetName, (ArtifactSets, AllArtifacts) => new ArtifactSetImage
+            ArtifactSetIcons = _db.ArtifactSets.Join(_db.AllArtifacts.Where(s => s.Type == "Flower of Life"), 
+                ArtifactSets => ArtifactSets.SetName, AllArtifacts => AllArtifacts.SetName, (ArtifactSets, AllArtifacts) => new ArtifactSetImage
             {
                 Image = AllArtifacts.Name,
                 SetType = ArtifactSets.SetName

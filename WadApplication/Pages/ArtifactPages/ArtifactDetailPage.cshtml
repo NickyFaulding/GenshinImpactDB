@@ -1,6 +1,8 @@
 ﻿@page "{Id:int}"
 @model WadApplication.Pages.ArtifactDetailPageModel
 @{
+    ViewData["Title"] = Model.artifactById.Name;
+
 }
 
 <div class="itemDetail">

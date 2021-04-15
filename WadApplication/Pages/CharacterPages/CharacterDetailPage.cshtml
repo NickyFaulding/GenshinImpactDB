@@ -1,6 +1,8 @@
 ﻿@page "{Id:int}"
 @model WadApplication.Pages.CharacterDetailPage
 @{
+    ViewData["Title"] = Model.characterById.Name;
+
     string rating = "";
     for (int x = 0; x < Model.characterById.Rarity; x++) { rating += "⭐"; }
 

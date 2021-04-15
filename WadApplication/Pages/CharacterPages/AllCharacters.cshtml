@@ -2,14 +2,13 @@
 
 @model WadApplication.Pages.AllCharactersModel
 @{
+    ViewData["Title"] = "All Characters";
 }
 
 <h1>All Playable Characters</h1>
 
 <form asp-page="./AllCharacters" method="get">
-    @*<partial name="_filterCharacter" />*@
     <input type="text" name="searchStringName" value="@Model.CurrentNameFilter" placeholder="Enter Character name" id="load" />
-    @*<input type="submit" value="Search" class="" />*@
 </form>
 
 <section class="wrap" id="loadStuff">
@@ -26,12 +25,6 @@
 
             $('#load').on('input', function () {
                 var ssN = ($(this).val().toString());
-                var ssE = ($('#ssE').val());
-                var ssR = ($('#ssR').val());
-                var ssW = ($('#ssW').val());
-
-                console.log(ssN.length);
-
                 $('#loadStuff').load("AllCharacters/LoadCharacters" + "?searchStringName=" + ssN)                
             });
         });

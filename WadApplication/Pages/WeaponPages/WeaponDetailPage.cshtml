@@ -1,6 +1,8 @@
 ﻿@page "{Id:int}"
 @model WadApplication.Pages.WeaponDetailPage
 @{
+    ViewData["Title"] = Model.weaponById.Name;
+
     string rating = "";
     for (int x = 0; x < Model.weaponById.Rarity; x++) { rating += "⭐"; }
 }
